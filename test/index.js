@@ -152,4 +152,29 @@ describe('pagination', () => {
       result[i].path.should.eql(`/page/${pageNum}/`);
     }
   });
+  it('overwriteLatest 1', () => {
+    const result = pagination('/', posts, {
+      explicitPaging: true,
+      overwriteLatest: true
+    });
+
+    for (let i = 0, len = result.length; i < len - 1; i++) {
+      const pageNum = i + 1;
+      result[i].path.should.eql(`/page/${pageNum}/`);
+    }
+    result[result.length - 1].path.should.eql('/latest/');
+  });
+  it('overwriteLatest 2', () => {
+    const result = pagination('/', [posts[0]], {
+      explicitPaging: true,
+      overwriteLatest: true
+    });
+    result[0].path.should.eql('/latest/');
+  });
+  it('overwriteLatest 3', () => {
+    const result = pagination('/', [posts[0]], {
+      overwriteLatest: true
+    });
+    result[0].path.should.eql('/');
+  });
 });

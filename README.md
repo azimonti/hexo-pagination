@@ -16,13 +16,17 @@ $ npm install hexo-pagination --save
 
 ### pagination(base, posts, [options])
 
-| Option           | Description                                     | Default                |
-| ---------------- | ----------------------------------------------- | ---------------------- |
-| `perPage`        | Posts displayed per page                        | `10`                   |
-| `format`         | URL format                                      | `page/%d/`             |
-| `layout`         | Layout. This value can be a string or an array. | `['archive', 'index']` |
-| `data`           | Extra data                                      | `{}`                   |
-| `explicitPaging` | Number the first page. e.g. `page/1/index.html` | `false`                |
+| Option           | Description                                             | Default                |
+| ---------------- | ------------------------------------------------------- | ---------------------- |
+| `perPage`        | Posts displayed per page                                | `10`                   |
+| `format`         | URL format                                              | `page/%d/`             |
+| `layout`         | Layout. This value can be a string or an array.         | `['archive', 'index']` |
+| `data`           | Extra data                                              | `{}`                   |
+| `explicitPaging` | Number the first page. e.g. `page/1/index.html`         | `false`                |
+| `overwriteLatest`| Set the latest page name. e.g. `page/latest/index.html` | `false`                |
+| `verbose`        | Display the generated urls                              | `false`                |
+
+If there is a single page `overwriteLatest` requires `explicitPaging=true`.
 
 For example:
 
