@@ -152,28 +152,36 @@ describe('pagination', () => {
       result[i].path.should.eql(`/page/${pageNum}/`);
     }
   });
-  it('overwriteLatest 1', () => {
-    const result = pagination('/', posts, {
+  it('renameLast', () => {
+    let result = pagination('/', posts, {
       explicitPaging: true,
-      overwriteLatest: true
+      renameLast: true
     });
-
     for (let i = 0, len = result.length; i < len - 1; i++) {
       const pageNum = i + 1;
       result[i].path.should.eql(`/page/${pageNum}/`);
     }
-    result[result.length - 1].path.should.eql('/latest/');
-  });
-  it('overwriteLatest 2', () => {
-    const result = pagination('/', [posts[0]], {
+    result[result.length - 1].path.should.eql('/page/last/');
+    result[result.length - 2].data.next_link.should.eql('/page/last/');
+    result = pagination('/', posts, {
+      format: 'ページ/%d/',
       explicitPaging: true,
-      overwriteLatest: true
+      renameLast: true,
+      localizedLast: '最後'
     });
-    result[0].path.should.eql('/latest/');
-  });
-  it('overwriteLatest 3', () => {
-    const result = pagination('/', [posts[0]], {
-      overwriteLatest: true
+    for (let i = 0, len = result.length; i < len - 1; i++) {
+      const pageNum = i + 1;
+      result[i].path.should.eql(`/ページ/${pageNum}/`);
+    }
+    result[result.length - 1].path.should.eql('/ページ/最後/');
+    result[result.length - 2].data.next_link.should.eql('/ページ/最後/');
+    result = pagination('/', [posts[0]], {
+      explicitPaging: true,
+      renameLast: true
+    });
+    result[0].path.should.eql('/page/last/');
+    result = pagination('/', [posts[0]], {
+      renameLast: true
     });
     result[0].path.should.eql('/');
   });
