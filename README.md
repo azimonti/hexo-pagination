@@ -27,7 +27,7 @@ $ npm install hexo-pagination --save
 | `localizedLast`  | Localize the last page name. e.g. `page/最後/index.html` | `last`                 |
 | `verbose`        | Display the generated urls                               | `false`                |
 
-If there is a single page `overwriteLatest` requires `explicitPaging=true`.
+If there is a single page `renameLast` requires `explicitPaging=true`.
 
 For example:
 
